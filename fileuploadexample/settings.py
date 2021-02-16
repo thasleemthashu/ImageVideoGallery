@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -25,8 +24,18 @@ SECRET_KEY = 'l_t9)o)y6g0lxlo8f2*+7^dd8_n%d8^872u7z=a(2b04ty_8s$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# # this disables Cross domain requests
+# CORS_ORIGIN_ALLOW_ALL = True 
 
+# # this allows cookie being passed cross domain    
+# CORS_ALLOW_CREDENTIALS = True 
+
+# # this is the list of allowed origins for cross domain ajax
+# CORS_ORIGIN_WHITELIST = ( 
+#         'localhost:8100',
+
+# )
 
 # Application definition
 
@@ -82,6 +91,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+    ),
 }
 
 
